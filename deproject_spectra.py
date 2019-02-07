@@ -126,7 +126,6 @@ def readSpectrumGrouping(specfile, grpmapping):
     Returns spec normalised to BACKSCAL and EXPOSURE, errors, outer radius
     """
 
-    print(specfile)
     f = pyfits.open(specfile)
     spechdu = f['SPECTRUM']
     header = spechdu.header
@@ -214,15 +213,12 @@ def readSpectra(prefix, suffix, minspec, numspecs, minradius):
     lastrad = minradius
     for filename in filenames:
         specinfo = readSpectrumGrouping(filename, grouping)
-        print(specinfo.factor)
-        print('yaaas')
         specinfo.minradius = lastrad
         lastrad = specinfo.maxradius
 
         if specinfo.backfile.lower() != 'none':
             # read background spectrum
             specinfo.backspec = readSpectrumGrouping(specinfo.backfile, grouping)
-            print('SUCCESSFUL FUCKO')
         else:
             # no background spectrum, so make a zero one with tiny errors
             specinfo.backspec = Bundle(
