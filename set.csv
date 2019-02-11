@@ -1,0 +1,2 @@
+prefix,suffix,startspec,num,inrad,outpre,outsuff
+test_files/spectrum_group,.fits,0,1,0,deproj,fits
